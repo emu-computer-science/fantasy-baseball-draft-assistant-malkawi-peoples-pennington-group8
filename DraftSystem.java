@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.*;
 
 public class DraftSystem {
 	private ArrayList<BaseBallPlayer> baseBallPlayers;
@@ -12,6 +14,22 @@ public class DraftSystem {
 		team3 = new ArrayList<>();
 		team4 = new ArrayList<>();
 		
+		//to do:parse the file so that it cuts up the contents into seperate string looking for a (char num num) sequence
 		//To Do: Read the PlayerList.txt file into baseBallPlayers
+		/*
+		try {
+			Scanner fileReader = new Scanner(new File("PlayerList.txt"));
+			while(fileReader.hasNextLine()) {
+				System.out.println(fileReader.nextLine());
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		*/
+		
+		
+		
 	}
 }
