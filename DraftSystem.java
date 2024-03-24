@@ -32,4 +32,27 @@ public class DraftSystem {
 		
 		
 	}
+	
+	
+	public void draftPlayerToTeam() {
+		System.out.println("This will draft players to team eventually");
+	}
+	public void printTeam() {
+		System.out.println("This will print teams eventually");
+	}
+	public void printStars() {
+		System.out.println("This will eventually print teams in drafted order");
+	}
+	public void overall() {
+		System.out.println("This will print players eventually");
+	}
+	public void pOverall() {
+		System.out.println("This will print pitchers eventually");
+	}
+	public void evalFun() {
+		System.out.println("This will set the evaluation funaction for overall() eventually");
+	}
+	public void pEvalFun() {
+		System.out.println("This will set the evaluation function for pOverall() eventually");
+	}
 }
