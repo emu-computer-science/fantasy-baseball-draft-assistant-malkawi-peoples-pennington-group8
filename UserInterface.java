@@ -25,6 +25,14 @@ public class UserInterface {
 		
 		
 	}
+	private FantasyDraft parseCommand(String userInput) {
+		return null;
+	}
+
+	private void executeCommand(FantasyDraft command) {
+		return;
+	}
+
 	private void exit() {
 		//ask user if they want to save first
 		System.exit(0);
