@@ -105,7 +105,7 @@ public class BaseBallPlayer {
 	}
 
 
-	public String getFirstName() {
+	public String tempPlayer() {
 		// TODO Auto-generated method stub
 		return firstName;
 	}
@@ -120,5 +120,11 @@ public class BaseBallPlayer {
 	public boolean getIsDrafted() {
 		// TODO Auto-generated method stub
 		return isDrafted;
+	}
+
+
+	public String getFirstName() {
+		// TODO Auto-generated method stub
+		return firstName;
 	}
 }

@@ -7,14 +7,18 @@ public class DraftSystem {
 	private ArrayList<BaseBallPlayer> baseBallPlayers;
 	private ArrayList<Pitcher> pitchers;
 
-	private ArrayList<BaseBallPlayer> teamA, teamB, teamC, teamD;
+
+	private PlayerTeam teamA, teamB, teamC, teamD;
+
 
 	public DraftSystem() {
 		// initialize empty arrayLists for teams
-		teamA = new ArrayList<>();
-		teamB = new ArrayList<>();
-		teamC = new ArrayList<>();
-		teamD = new ArrayList<>();
+
+		teamA = new PlayerTeam('A');
+		teamB = new PlayerTeam('B');
+		teamC = new PlayerTeam('C');
+		teamD = new PlayerTeam('D');
+
 
 		// to do:parse the file so that it cuts up the contents into seperate string
 		// looking for a (char num num) sequence
@@ -36,7 +40,7 @@ public class DraftSystem {
 			for (String playerInfo : playerStrings) {
 				baseBallPlayers.add(new BaseBallPlayer(playerInfo));
 			}
-			
+
 			// pitcher file
 			fileReader = new Scanner(new File("PitcherList.txt"));
 			fullPlayerList = "";
@@ -62,6 +66,8 @@ public class DraftSystem {
 	// To Do: Check if the position of wanted player is already in team
 	public void iDraft(String lastName, char firstInitial) {
 
+		boolean playerFound = false;
+
 		for (BaseBallPlayer player : baseBallPlayers) {
 			String playerLast = player.getLastName();
 			char playerFirstInitial = player.getFirstName().charAt(0);
@@ -70,25 +76,150 @@ public class DraftSystem {
 				if (player.getIsDrafted()) {
 					System.out.println("Player already drafted");
 				} else {
-					teamA.add(player);
+
+					teamA.addToTeam(player);
+
 					System.out.println(player.getLastName() + "has been drafted to team A");
 				}
+				playerFound = true;
 				break;
+
+
+			}
+		}
+		//if player is not found in baseBallPlayers, look through pitchers
+		if(playerFound == false) {
+			
+			for (Pitcher player : pitchers) {
+				String playerLast = player.getLastName();
+				char playerFirstInitial = player.getFirstName().charAt(0);
+
+				if (lastName.equalsIgnoreCase(playerLast)
+						&& Character.toUpperCase(firstInitial) == playerFirstInitial) {
+					if (player.getIsDrafted()) {
+						System.out.println("Player already drafted");
+					} else {
+						teamA.addToTeam(player);
+						System.out.println(player.getLastName() + "has been drafted to team A");
+					}
+					playerFound = true;
+					break;
+
+				}
 
 			}
 		}
 
+		if(playerFound == false) {
+			System.out.println("Could not find player");
+		}
+
+
 	}
+
+
+	public void oDraft(String lastName, char firstInitial, char teamName) {
+		boolean playerFound = false;
+		PlayerTeam tempTeamVariable = null;
+		switch (Character.toUpperCase(teamName)) {
+		case 'A':
+			tempTeamVariable = teamA;
+			break;
+		case 'B':
+			tempTeamVariable = teamB;
+			break;
+		case 'C':
+			tempTeamVariable = teamC;
+			break;
+		case 'D':
+			tempTeamVariable = teamD;
+			break;
+		}
+
+		
+		for (BaseBallPlayer player : baseBallPlayers) {
+			String playerLast = player.getLastName();
+			char playerFirstInitial = player.getFirstName().charAt(0);
+
+			if (lastName.equalsIgnoreCase(playerLast) && Character.toUpperCase(firstInitial) == playerFirstInitial) {
+				if (player.getIsDrafted()) {
+					System.out.println("Player already drafted");
+				} else {
+					tempTeamVariable.addToTeam(player);
+					System.out.println(player.getLastName() + "has been drafted to team A");
+				}
+				playerFound = true;
+				break;
+
+			}
+		}
+		//if player is not found in baseBallPlayers, look through pitchers
+		if(playerFound == false) {
+			
+			for (Pitcher player : pitchers) {
+				String playerLast = player.getLastName();
+				char playerFirstInitial = player.getFirstName().charAt(0);
+
+				if (lastName.equalsIgnoreCase(playerLast)
+						&& Character.toUpperCase(firstInitial) == playerFirstInitial) {
+					if (player.getIsDrafted()) {
+						System.out.println("Player already drafted");
+					} else {
+						tempTeamVariable.addToTeam(player);
+						System.out.println(player.getLastName() + "has been drafted to team A");
+					}
+					playerFound = true;
+					break;
+
+				}
+			}
+		}
+		
+
+	}
+
 
 	public void oDraft() {
 		System.out.println("This will draft players to teams eventually");
 	}
 
-	public void printTeam() {
-		System.out.println("This will print teams eventually");
+
+	public void team(char teamName) {
+		switch (Character.toUpperCase(teamName)) {
+		case 'A':
+			teamA.printTeam();
+			break;
+		case 'B':
+			teamB.printTeam();
+			break;
+		case 'C':
+			teamC.printTeam();
+			break;
+		case 'D':
+			teamD.printTeam();
+			break;
+		}
+
 	}
 
-	public void printStars() {
+
+	public void stars(char teamName) {
+		switch (Character.toUpperCase(teamName)) {
+		case 'A':
+			teamA.printStars();
+			break;
+		case 'B':
+			teamB.printStars();
+			break;
+		case 'C':
+			teamC.printStars();
+			break;
+		case 'D':
+			teamD.printStars();
+			break;
+		}
+		
+
 		System.out.println("This will eventually print teams in drafted order");
 	}
 
@@ -118,11 +249,13 @@ public class DraftSystem {
 		// only printing top 50 pitchers
 		ArrayList<Pitcher> tempList = pitchers;
 
-		tempList.sort(Comparator.comparingDouble(player ->  ((Pitcher) player).getSO()).reversed());
+
+		tempList.sort(Comparator.comparingDouble(player -> ((Pitcher) player).getSO()).reversed());
 
 		int count = 0;
 		for (Pitcher player : tempList) {
-			if(count == 50) {
+			if (count == 50) {
+
 				break;
 			}
 			System.out.println(player.toString() + player.getSO());
