@@ -25,8 +25,18 @@ public class UserInterface {
 		
 		
 	}
-	private FantasyDraft parseCommand(String userInput) {
-		return null;
+	private boolean parseCommand(String userInput) {
+		if (userInput.toUpperCase().startsWith("IDRAFT ")) {
+            String playerName = userInput.substring(7).replace("\"", "");
+            fantasyDraft.iDraft(playerName, 'A');
+        } else if (userInput.toUpperCase().startsWith("ODRAFT ")) {
+            String[] parts = userInput.split(" ");
+            if (parts.length < 3) {
+                System.out.println("Invalid command format for ODRAFT.");
+                return false;
+			}
+		}
+		return true;
 	}
 
 	private void executeCommand(FantasyDraft command) {
