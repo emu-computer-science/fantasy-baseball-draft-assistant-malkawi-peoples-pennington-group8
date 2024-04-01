@@ -49,7 +49,6 @@ public class DraftSystem {
 			playerStrings = fullPlayerList.split("(?<=[a-zA-Z]{3}\\d{2})");
 
 			for (String pitcherInfo : playerStrings) {
-				System.out.println(pitcherInfo);
 				pitchers.add(new Pitcher(pitcherInfo));
 			}
 		} catch (FileNotFoundException e) {
