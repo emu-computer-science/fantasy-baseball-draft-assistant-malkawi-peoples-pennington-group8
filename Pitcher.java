@@ -8,7 +8,7 @@ public class Pitcher {
 	private String teamName;
 	
 	private double sO;
-	
+	private double iP;
 	
 	public Pitcher(String playerInfo) {
 		String[] info = playerInfo.split(",");
@@ -39,6 +39,7 @@ public class Pitcher {
 		}
 		
 		sO = Double.parseDouble(info[21]);
+		iP = Double.parseDouble(info[13]);
 		teamName = info[3];	
 		
 		
@@ -85,5 +86,9 @@ public class Pitcher {
 	public double getSO() {
 		// TODO Auto-generated method stub
 		return sO;
+	}
+	public double getIP() {
+		// TODO Auto-generated method stub
+		return iP;
 	}
 }

@@ -37,11 +37,14 @@ public class DraftSystem {
 
 			String[] playerStrings = fullPlayerList.split("(?<=[a-zA-Z]{3}\\d{2})");
 
+
 			for (String playerInfo : playerStrings) {
 				baseBallPlayers.add(new BaseBallPlayer(playerInfo));
+
 			}
 
 			// pitcher file
+
 			fileReader = new Scanner(new File("PitcherList.txt"));
 			fullPlayerList = "";
 			while (fileReader.hasNextLine()) {
@@ -53,7 +56,9 @@ public class DraftSystem {
 			playerStrings = fullPlayerList.split("(?<=[a-zA-Z]{3}\\d{2})");
 
 			for (String pitcherInfo : playerStrings) {
+
 				pitchers.add(new Pitcher(pitcherInfo));
+
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -179,9 +184,7 @@ public class DraftSystem {
 	}
 
 
-	public void oDraft() {
-		System.out.println("This will draft players to teams eventually");
-	}
+
 
 
 	public void team(char teamName) {
@@ -232,12 +235,18 @@ public class DraftSystem {
 
 		if (position.isEmpty()) {
 			for (BaseBallPlayer player : tempList) {
-				System.out.println(player.toString() + player.getBA());
+				if(player.getIsDrafted() == false) {
+					System.out.println(player.toString() + player.getBA());
+				}
+				
 			}
 		} else {
 			for (BaseBallPlayer player : tempList) {
 				if (position.equalsIgnoreCase(player.getPosition())) {
-					System.out.println(player.toString() + player.getBA());
+					if(player.getIsDrafted() == false) {
+						System.out.println(player.toString() + player.getBA());
+					}
+					
 				}
 
 			}
@@ -250,7 +259,7 @@ public class DraftSystem {
 		ArrayList<Pitcher> tempList = pitchers;
 
 
-		tempList.sort(Comparator.comparingDouble(player -> ((Pitcher) player).getSO()).reversed());
+		tempList.sort(Comparator.comparingDouble(player -> ((Pitcher) player).getIP()).reversed());
 
 		int count = 0;
 		for (Pitcher player : tempList) {
@@ -258,7 +267,9 @@ public class DraftSystem {
 
 				break;
 			}
-			System.out.println(player.toString() + player.getSO());
+			if(player.getIsDrafted() == false) {
+				System.out.println(player.toString() + player.getIP());
+			}
 			count++;
 
 		}
