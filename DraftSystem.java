@@ -91,7 +91,7 @@ public class DraftSystem {
 				}
 			}
 			// if player is not found in baseBallPlayers, look through pitchers
-			if (playerFound == false && teamA.getPitcherAmount() < 5) {
+			if (playerFound == false) {
 
 				for (Pitcher player : pitchers) {
 					String playerLast = player.getLastName();
@@ -111,7 +111,8 @@ public class DraftSystem {
 					}
 
 				}
-			}else if ( teamA.getPitcherAmount() == 5) {
+			}
+			if ( teamA.getPitcherAmount() == 5) {
 				System.out.println("teamA has max pitchers");
 			}
 

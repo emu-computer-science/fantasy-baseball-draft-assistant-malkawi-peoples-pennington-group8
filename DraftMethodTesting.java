@@ -73,7 +73,7 @@ class DraftMethodTesting {
 		dS.iDraft("Gallo", 'J');
 		
 		dS.iDraft("Gordon", 'N');
-		dS.iDraft("Cowser", 'C');
+		
 		
 		dS.iDraft("Gausman", 'K');
 		dS.iDraft("Eflin", 'Z');
@@ -86,13 +86,23 @@ class DraftMethodTesting {
 		
 		dS.iDraft("Bannon", 'R');
 		
+		dS.oDraft("Cowser", 'C', 'A');
+		
 		dS.oDraft("Bride", 'J', 'B');
 		dS.oDraft("Hamilton", 'D', 'B');
 		dS.oDraft("Hummel", 'C', 'B');
 		
+		dS.oDraft("Blanco", 'D', 'C');
+		dS.oDraft("Capel", 'C', 'C');
+		
+		dS.oDraft("Capel", 'C', 'D');
+		dS.oDraft("Dalbec", 'B', 'D');
+		
 		dS.stars('A');
 		dS.team('A');
 		dS.team('B');
+		dS.team('C');
+		dS.team('D');
 		
 	}
 	
