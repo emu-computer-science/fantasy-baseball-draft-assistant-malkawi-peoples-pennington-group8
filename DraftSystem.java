@@ -19,9 +19,7 @@ public class DraftSystem {
 		teamD = new PlayerTeam('D');
 
 		currentTeamPicking = teamA;
-		// to do:parse the file so that it cuts up the contents into seperate string
-		// looking for a (char num num) sequence
-		// To Do: Read the PlayerList.txt file into baseBallPlayers
+		
 		pitchers = new ArrayList<>();
 		baseBallPlayers = new ArrayList<>();
 		String fullPlayerList = "";

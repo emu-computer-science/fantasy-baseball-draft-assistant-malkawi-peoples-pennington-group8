@@ -7,8 +7,8 @@ public class Pitcher {
 	//maybe a hashset instead or something ??
 	private String teamName;
 	
-	private double sO;
-	private double iP;
+	
+	private double sO,iP, h,r, hR;
 	
 	public Pitcher(String playerInfo) {
 		String[] info = playerInfo.split(",");
@@ -38,8 +38,17 @@ public class Pitcher {
 			lastName = lastName.substring(0, lastName.length() - 1);
 		}
 		
+		//strike-outs
 		sO = Double.parseDouble(info[21]);
-		iP = Double.parseDouble(info[13]);
+		//innings pitched
+		iP = Double.parseDouble(info[14]);
+		//hits allowed
+		h = Double.parseDouble(info[15]);
+		//runs allowed
+		r = Double.parseDouble(info[16]);
+		//home runs allowed
+		hR = Double.parseDouble(info[18]);
+		
 		teamName = info[3];	
 		
 		
@@ -90,5 +99,17 @@ public class Pitcher {
 	public double getIP() {
 		// TODO Auto-generated method stub
 		return iP;
+	}
+	public double getH() {
+		// TODO Auto-generated method stub
+		return h;
+	}
+	public double getR() {
+		// TODO Auto-generated method stub
+		return r;
+	}
+	public double getHR() {
+		// TODO Auto-generated method stub
+		return hR;
 	}
 }

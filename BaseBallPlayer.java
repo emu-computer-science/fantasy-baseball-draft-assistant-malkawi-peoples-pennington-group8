@@ -6,8 +6,9 @@ public class BaseBallPlayer {
 	private String playerPosition;
 	//maybe a hashset instead or something ??
 	private String teamName;
+	private double bA, hR, r, h, sO;
 	
-	private double rK,age,g,pA,aB,r,h,b2,b3,hR,rBI,sB,cS,bB,sO,bA,oBP,sLG,oPS,oPSPlus,tB,gDP,hBP,sH,sF,iBB, position;
+	
 	
 	public BaseBallPlayer(String playerInfo) {
 		String[] info = playerInfo.split(",");
@@ -37,7 +38,16 @@ public class BaseBallPlayer {
 			lastName = lastName.substring(0, lastName.length() - 1);
 		}
 		
+		//Runs
+		r = Double.parseDouble(info[7]);
+		//hits
+		h = Double.parseDouble(info[8]);
+		//home Runs
+		hR = Double.parseDouble(info[11]);
+		//batting average
 		bA = Double.parseDouble(info[17]);
+		//strike-outs
+		sO = Double.parseDouble(info[16]);
 		
 		teamName = info[3];	
 		
@@ -99,6 +109,18 @@ public class BaseBallPlayer {
 	}
 	public Double getBA() {
 		return bA;
+	}
+	public Double getH() {
+		return h;
+	}
+	public Double getR() {
+		return r;
+	}
+	public Double getHR() {
+		return hR;
+	}
+	public Double getSO() {
+		return sO;
 	}
 	public String getPosition() {
 		return playerPosition;
