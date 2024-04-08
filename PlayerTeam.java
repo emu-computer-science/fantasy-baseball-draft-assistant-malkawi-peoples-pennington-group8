@@ -31,9 +31,7 @@ public class PlayerTeam {
 			players.put(b.getPosition(), b);
 			playerPickOrder.add(b);
 			b.setIsDrafted();
-			
-			
-			
+						
 		}
 	}
 
@@ -105,6 +103,28 @@ public class PlayerTeam {
 
 	public void printStars() {
 		// TODO Auto-generated method stub
+		System.out.println("------------------------------");
+		System.out.println("Team " + teamName + " STARS");
+		System.out.println();
+		for(Object player : playerPickOrder) {
+			if(player instanceof BaseBallPlayer) {
+				System.out.println(((BaseBallPlayer) player).getPosition() + "   " + ((BaseBallPlayer) player).getFirstName() + " " + ((BaseBallPlayer) player).getLastName());
+			}else {
+				System.out.println(((Pitcher) player).getPosition() + "   " + ((Pitcher) player).getFirstName() + " " + ((Pitcher) player).getLastName());
+			}
+			//System.out.println(((BaseBallPlayer) player).getPosition() + "   " + ((BaseBallPlayer) player).getFirstName() + " " + ((BaseBallPlayer) player).getLastName());
+		}
+		System.out.println();
+		System.out.println();
+		System.out.println("------------------------------");
+	
 
+	}
+	
+	public char getTeamName() {
+		return teamName;
+	}
+	public int getPitcherAmount() {
+		return amountOfPitchers;
 	}
 }
