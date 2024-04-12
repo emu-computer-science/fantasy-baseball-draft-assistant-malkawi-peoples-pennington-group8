@@ -2,6 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+
 class DraftMethodTesting {
 
 	@Test
@@ -57,11 +58,21 @@ class DraftMethodTesting {
 		
 		
 		dS.pOverall();
-		dS.evalFun();
+		dS.evalFun("hR + r");
+		dS.overall("RF");
 		dS.pEvalFun();
 		
 		
 	
+	}
+	
+	@Test
+	void evalTest(){
+		DraftSystem dS = new DraftSystem();
+		
+		dS.overall("RF");
+		dS.evalFun("bA * r");
+		dS.overall("RF");
 	}
 	
 	@Test

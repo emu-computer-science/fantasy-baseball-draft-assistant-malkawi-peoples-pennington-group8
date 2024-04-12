@@ -1,3 +1,4 @@
+import org.apache.commons.jexl3.*;
 
 public class BaseBallPlayer {
 	private String firstName;
@@ -8,7 +9,7 @@ public class BaseBallPlayer {
 	private String teamName;
 	private double bA, hR, r, h, sO;
 	
-	
+	private double evalResult;
 	
 	public BaseBallPlayer(String playerInfo) {
 		String[] info = playerInfo.split(",");
@@ -46,6 +47,7 @@ public class BaseBallPlayer {
 		hR = Double.parseDouble(info[11]);
 		//batting average
 		bA = Double.parseDouble(info[17]);
+		evalResult = bA;
 		//strike-outs
 		sO = Double.parseDouble(info[16]);
 		
@@ -68,7 +70,7 @@ public class BaseBallPlayer {
 
 	
 	public String toString() {
-		return (firstName + "        " + lastName + "        " + teamName + "        " + playerPosition + "        ");
+		return (firstName + "        " + lastName + "        " + teamName + "        " + playerPosition + "        " + evalResult);
 	}
 	private void findPosition(char posNum) {
 		// TODO Auto-generated method stub
@@ -103,6 +105,54 @@ public class BaseBallPlayer {
 		}
 	}
 
+	public Double evaluate(String expression) throws Exception{
+		try {
+			JexlEngine jexl = new JexlBuilder().create();
+
+			JexlContext context = new MapContext();
+			context.set("bA", bA);
+			context.set("hR", hR);
+			context.set("r", r);
+			context.set("h", h);
+			context.set("sO", sO);
+
+			JexlExpression jexlExpression = jexl.createExpression(expression);
+			Object result = jexlExpression.evaluate(context);
+
+			evalResult = (Double) result;
+			return (Double) result;
+		}catch(Exception e) {
+			throw e;
+		}
+		
+		/*
+		String[] elements = expression.split(" ");
+		Double value1;
+		Double value2;
+		
+		//1 or 3 elements valid
+		if(elements.length == 1 || elements.length == 3) {
+			if(elements.length == 3) {
+				switch(elements[0].toLowerCase()) {
+				case "ba":
+					break;
+				case "hr":
+					break;
+				case "r":
+					break;
+				case "h":
+					break;
+				case "so":
+					break;
+				default:
+					value1 = Double.parseDouble(expression[0]);
+				
+				}
+			}
+		}
+		*/
+		
+	}
 	
 	public void setIsDrafted() {
 		isDrafted = true;
