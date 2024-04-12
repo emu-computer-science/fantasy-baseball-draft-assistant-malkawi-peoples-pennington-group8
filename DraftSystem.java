@@ -300,8 +300,6 @@ public class DraftSystem {
 			// only printing top 50 pitchers
 			ArrayList<Pitcher> tempList = pitchers;
 
-			tempList.sort(Comparator.comparingDouble(player -> ((Pitcher) player).getIP()).reversed());
-
 			int count = 0;
 			for (Pitcher player : tempList) {
 				if (count == 50) {
@@ -309,7 +307,7 @@ public class DraftSystem {
 					break;
 				}
 				if (player.getIsDrafted() == false) {
-					System.out.println(player.toString() + player.getIP());
+					System.out.println(player.toString());
 				}
 				count++;
 
@@ -340,10 +338,25 @@ public class DraftSystem {
 			}			
 		};
 		baseBallPlayers.sort(teamSorter.reversed());
-		System.out.println("This will set the evaluation funaction for overall() eventually");
+		
 	}
 
-	public void pEvalFun() {
-		System.out.println("This will set the evaluation function for pOverall() eventually");
+	public void pEvalFun(String evalExpression) {
+		Comparator<Pitcher> teamSorter = (p1, p2) ->{
+			try {
+				double result1 = p1.evaluate(evalExpression);
+				double result2 = p2.evaluate(evalExpression);
+				
+				//System.out.println("BaseBall Players Successfully sorted");
+				return Double.compare(result1, result2);
+		
+			}catch(Exception e) {
+				System.out.println("Invalid expression -- setting to bA");
+				e.printStackTrace();
+				
+				return Double.compare(p1.getSO(),p2.getSO());
+			}			
+		};
+		pitchers.sort(teamSorter.reversed());
 	}
 }

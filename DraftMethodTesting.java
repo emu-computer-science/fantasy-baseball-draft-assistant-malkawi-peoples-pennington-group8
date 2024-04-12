@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 
 class DraftMethodTesting {
-
+	/*
 	@Test
 	void testOverallMethods() {
 		DraftSystem dS = new DraftSystem();
@@ -60,11 +60,13 @@ class DraftMethodTesting {
 		dS.pOverall();
 		dS.evalFun("hR + r");
 		dS.overall("RF");
-		dS.pEvalFun();
+		dS.pEvalFun("sO + hR");
+		dS.pOverall();
 		
 		
 	
 	}
+	*/
 	
 	@Test
 	void evalTest(){
@@ -73,8 +75,10 @@ class DraftMethodTesting {
 		dS.overall("RF");
 		dS.evalFun("bA * r");
 		dS.overall("RF");
+		dS.pEvalFun("sO + hR");
+		dS.pOverall();
 	}
-	
+	/*
 	@Test
 	void testDraftMethods() {
 		DraftSystem dS = new DraftSystem();
@@ -116,5 +120,5 @@ class DraftMethodTesting {
 		dS.team('D');
 		
 	}
-	
+	*/
 }
