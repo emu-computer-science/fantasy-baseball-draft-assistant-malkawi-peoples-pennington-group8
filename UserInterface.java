@@ -58,7 +58,28 @@ public class UserInterface {
 	
 					fantasyDraft.oDraft(lastName2, firstInitial, teamName);
 					break;
+				
+				case "evalfun":
+			        System.out.print("Enter for non-pitchers: ");
+			        String evalExpression = scnr.nextLine().trim();
+			        if (evalExpression.isEmpty()) {
+			            System.out.println("expression was not provided.");
+			            break;
+			        }
+			        fantasyDraft.evalFun(evalExpression);
+			        System.out.println("Non-pitchers sorted successfully using the given expression.");
+			        break;
 
+			    case "pevalfun":
+			        System.out.print("Enter for pitchers: ");
+			        String evalExpressionForPitchers = scnr.nextLine().trim();
+			        if (evalExpressionForPitchers.isEmpty()) {
+			            System.out.println("expression was not provided.");
+			            break;
+			        }
+			        fantasyDraft.pEvalFun(evalExpressionForPitchers);
+			        System.out.println("Pitchers sorted successfully");
+			        break;
 				case "overall":
 					fantasyDraft.overall(userInput);
 					break;
@@ -90,4 +111,3 @@ public class UserInterface {
 		System.out.println("Available Commands: exit, help, overall, poverall, stars");
 	}
 }
-
