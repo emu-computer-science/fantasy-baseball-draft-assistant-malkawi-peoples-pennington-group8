@@ -70,17 +70,20 @@ public class UserInterface {
 			        System.out.println("Non-pitchers sorted successfully using the given expression.");
 			        break;
 
-			    case "pevalfun":
-			        System.out.print("Enter for pitchers: ");
-			        String evalExpressionForPitchers = scnr.nextLine().trim();
-			        if (evalExpressionForPitchers.isEmpty()) {
-			            System.out.println("expression was not provided.");
-			            break;
-			        }
-			        fantasyDraft.pEvalFun(evalExpressionForPitchers);
-			        System.out.println("Pitchers sorted successfully");
-			        break;
-				case "overall":
+			    	case "pevalfun":
+				        System.out.print("Enter for pitchers: ");
+				        String evalExpressionForPitchers = scnr.nextLine().trim();
+				        if (evalExpressionForPitchers.isEmpty()) {
+				            System.out.println("expression was not provided.");
+				            break;
+				        }
+				        fantasyDraft.pEvalFun(evalExpressionForPitchers);
+				        System.out.println("Pitchers sorted successfully");
+				        break;
+				
+			    	case "overall":
+					System.out.print("Enter player position or leave blank: ");
+					userInput = scnr.nextLine().trim();
 					fantasyDraft.overall(userInput);
 					break;
 
