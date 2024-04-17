@@ -31,6 +31,7 @@ public class PlayerTeam {
 			players.put(b.getPosition(), b);
 			playerPickOrder.add(b);
 			b.setIsDrafted();
+			isPosInTeam.put(b.getPosition(), true);
 						
 		}
 	}
@@ -48,7 +49,17 @@ public class PlayerTeam {
 	}
 
 	public boolean isPositionInTeam(String pos) {
-
+		if(pos.contains("D")) {
+			return true;
+		}else if(pos == "P") {
+			if(amountOfPitchers == 5) {
+				return true;
+			}else {
+				return false;
+			}
+				
+		}
+		//System.out.println(pos);
 		return isPosInTeam.get(pos);
 	}
 

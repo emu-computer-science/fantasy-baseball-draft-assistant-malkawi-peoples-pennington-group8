@@ -73,7 +73,7 @@ public class DraftSystem {
 			System.out.println("Error creating Draft");
 			e.printStackTrace();
 		}
-
+		
 	}
 
 	// To Do: Check if the position of wanted player is already in team
@@ -274,7 +274,7 @@ public class DraftSystem {
 
 		if (position.isEmpty()) {
 			for (BaseBallPlayer player : baseBallPlayers) {
-				if (player.getIsDrafted() == false && currentTeamPicking.isPositionInTeam(player.getPosition())) {
+				if (player.getIsDrafted() == false && !currentTeamPicking.isPositionInTeam(player.getPosition())) {
 					System.out.println(player.toString());
 				}
 

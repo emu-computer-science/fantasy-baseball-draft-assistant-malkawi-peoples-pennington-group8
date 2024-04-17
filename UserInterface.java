@@ -60,6 +60,7 @@ public class UserInterface {
 					break;
 				
 				case "evalfun":
+					System.out.println("Variables for non-pitchers: bA, hR, r, h, sO --- No Division");
 			        System.out.print("Enter for non-pitchers: ");
 			        String evalExpression = scnr.nextLine().trim();
 			        if (evalExpression.isEmpty()) {
@@ -71,6 +72,7 @@ public class UserInterface {
 			        break;
 
 			    	case "pevalfun":
+			    		System.out.println("Variables for pitchers: sO,iP, h,r, hR --- No Division");
 				        System.out.print("Enter for pitchers: ");
 				        String evalExpressionForPitchers = scnr.nextLine().trim();
 				        if (evalExpressionForPitchers.isEmpty()) {
@@ -84,6 +86,7 @@ public class UserInterface {
 			    	case "overall":
 					System.out.print("Enter player position or leave blank: ");
 					userInput = scnr.nextLine().trim();
+					System.out.println(userInput);
 					fantasyDraft.overall(userInput);
 					break;
 
@@ -92,9 +95,14 @@ public class UserInterface {
 					break;
 
 				case "stars":
-					fantasyDraft.stars('c');
+					System.out.print("Enter a team letter: ");
+					char teamChar1 = scnr.nextLine().charAt(0);
+					fantasyDraft.stars(teamChar1);
 					break;
-
+				case "team":
+					System.out.print("Enter a team letter: ");
+					char teamChar2 = scnr.nextLine().charAt(0);
+					fantasyDraft.team(teamChar2);
 				default:
 					System.out.println("Invalid Command: Type \"help\" to see possible commands");
 			
