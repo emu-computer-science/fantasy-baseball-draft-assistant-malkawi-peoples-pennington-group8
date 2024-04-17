@@ -1,16 +1,27 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
+
+import javax.script.ScriptException;
+
 import java.io.*;
 
-public class DraftSystem {
+	
+
+
+public class DraftSystem implements Serializable{
+	private static final long serialVersionUID = -2569918526190664687L;
 	private ArrayList<BaseBallPlayer> baseBallPlayers;
 	private ArrayList<Pitcher> pitchers;
 
 	private PlayerTeam teamA, teamB, teamC, teamD;
 	private PlayerTeam currentTeamPicking;
+	
+	
 
 	public DraftSystem() {
+		
 		// initialize empty arrayLists for teams
 
 		teamA = new PlayerTeam('A');
@@ -56,12 +67,15 @@ public class DraftSystem {
 				pitchers.add(new Pitcher(pitcherInfo));
 
 			}
+			
+			//sort the baseballPlayer array by bA
+			evalFun("bA");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Error creating Draft");
 			e.printStackTrace();
 		}
-
+		
 	}
 
 	// To Do: Check if the position of wanted player is already in team
@@ -257,24 +271,22 @@ public class DraftSystem {
 
 	public void overall(String position) {
 		// print all players if empty -- if not, print only if positions are the same
-		// Sort by batting average (TEMPORAY)
-		ArrayList<BaseBallPlayer> tempList = baseBallPlayers;
-
-		tempList.sort(Comparator.comparingDouble(player -> player.getBA()));
+		
+		
 
 		if (position.isEmpty()) {
-			for (BaseBallPlayer player : tempList) {
-				if (player.getIsDrafted() == false && currentTeamPicking.isPositionInTeam(player.getPosition())) {
-					System.out.println(player.toString() + player.getBA());
+			for (BaseBallPlayer player : baseBallPlayers) {
+				if (player.getIsDrafted() == false && !currentTeamPicking.isPositionInTeam(player.getPosition())) {
+					System.out.println(player.toString());
 				}
 
 			}
 		} else {
 
-			for (BaseBallPlayer player : tempList) {
+			for (BaseBallPlayer player : baseBallPlayers) {
 				if (position.equalsIgnoreCase(player.getPosition())) {
 					if (player.getIsDrafted() == false) {
-						System.out.println(player.toString() + player.getBA());
+						System.out.println(player.toString());
 					}
 
 				}
@@ -290,8 +302,6 @@ public class DraftSystem {
 			// only printing top 50 pitchers
 			ArrayList<Pitcher> tempList = pitchers;
 
-			tempList.sort(Comparator.comparingDouble(player -> ((Pitcher) player).getIP()).reversed());
-
 			int count = 0;
 			for (Pitcher player : tempList) {
 				if (count == 50) {
@@ -299,7 +309,7 @@ public class DraftSystem {
 					break;
 				}
 				if (player.getIsDrafted() == false) {
-					System.out.println(player.toString() + player.getIP());
+					System.out.println(player.toString());
 				}
 				count++;
 
@@ -310,11 +320,45 @@ public class DraftSystem {
 
 	}
 
-	public void evalFun() {
-		System.out.println("This will set the evaluation funaction for overall() eventually");
+	
+	public void evalFun(String evalExpression) {
+		
+		
+		Comparator<BaseBallPlayer> teamSorter = (p1, p2) ->{
+			try {
+				double result1 = p1.evaluate(evalExpression);
+				double result2 = p2.evaluate(evalExpression);
+				
+				//System.out.println("BaseBall Players Successfully sorted");
+				return Double.compare(result1, result2);
+		
+			}catch(Exception e) {
+				System.out.println("Invalid expression -- setting to bA");
+				e.printStackTrace();
+				
+				return Double.compare(p1.getBA(),p2.getBA());
+			}			
+		};
+		baseBallPlayers.sort(teamSorter.reversed());
+		
 	}
 
-	public void pEvalFun() {
-		System.out.println("This will set the evaluation function for pOverall() eventually");
+	public void pEvalFun(String evalExpression) {
+		Comparator<Pitcher> teamSorter = (p1, p2) ->{
+			try {
+				double result1 = p1.evaluate(evalExpression);
+				double result2 = p2.evaluate(evalExpression);
+				
+				//System.out.println("BaseBall Players Successfully sorted");
+				return Double.compare(result1, result2);
+		
+			}catch(Exception e) {
+				System.out.println("Invalid expression -- setting to bA");
+				e.printStackTrace();
+				
+				return Double.compare(p1.getSO(),p2.getSO());
+			}			
+		};
+		pitchers.sort(teamSorter.reversed());
 	}
 }

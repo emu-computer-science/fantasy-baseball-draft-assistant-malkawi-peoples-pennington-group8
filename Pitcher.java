@@ -1,5 +1,11 @@
+import java.io.Serializable;
 
-public class Pitcher {
+import org.apache.commons.jexl3.*;
+public class Pitcher implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2569908526190662687L;
 	private String firstName;
 	private String lastName;
 	private boolean isDrafted;
@@ -9,6 +15,8 @@ public class Pitcher {
 	
 	
 	private double sO,iP, h,r, hR;
+	
+	private double evalResult;
 	
 	public Pitcher(String playerInfo) {
 		String[] info = playerInfo.split(",");
@@ -40,6 +48,7 @@ public class Pitcher {
 		
 		//strike-outs
 		sO = Double.parseDouble(info[21]);
+		evalResult = sO;
 		//innings pitched
 		iP = Double.parseDouble(info[14]);
 		//hits allowed
@@ -61,7 +70,7 @@ public class Pitcher {
 
 	
 	public String toString() {
-		return (firstName + "        " + lastName + "        " + teamName + "        " + playerPosition + "        ");
+		return (firstName + "        " + lastName + "        " + teamName + "        " + playerPosition + "        " + evalResult);
 	}
 	
 	
@@ -111,5 +120,27 @@ public class Pitcher {
 	public double getHR() {
 		// TODO Auto-generated method stub
 		return hR;
+	}
+
+
+	public double evaluate(String expression) {
+		try {
+			JexlEngine jexl = new JexlBuilder().create();
+
+			JexlContext context = new MapContext();
+			context.set("sO", sO);
+			context.set("iP", iP);
+			context.set("h", h);
+			context.set("r", r);
+			context.set("hR", hR);
+
+			JexlExpression jexlExpression = jexl.createExpression(expression);
+			Object result = jexlExpression.evaluate(context);
+
+			evalResult = (Double) result;
+			return (Double) result;
+		}catch(Exception e) {
+			throw e;
+		}
 	}
 }

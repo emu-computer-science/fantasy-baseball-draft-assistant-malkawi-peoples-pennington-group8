@@ -2,8 +2,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class DraftMethodTesting {
 
+class DraftMethodTesting {
 	@Test
 	void testOverallMethods() {
 		DraftSystem dS = new DraftSystem();
@@ -56,11 +56,6 @@ class DraftMethodTesting {
 		
 		
 		
-		dS.pOverall();
-		dS.evalFun();
-		dS.pEvalFun();
-		
-		
 	
 	}
 	
@@ -71,34 +66,28 @@ class DraftMethodTesting {
 		dS.iDraft("Hamilton", 'C');
 		dS.iDraft("Bannon", 'R');
 		dS.iDraft("Gallo", 'J');
-		
 		dS.iDraft("Gordon", 'N');
-		
-		
 		dS.iDraft("Gausman", 'K');
 		dS.iDraft("Eflin", 'Z');
 		dS.iDraft("Gray", 'S');
 		dS.iDraft("Bibee", 'T');
 		dS.iDraft("Abreu", 'B');
-		
 		dS.iDraft("Gausman", 'K');
 		dS.iDraft("Brito", 'J');
-		
 		dS.iDraft("Bannon", 'R');
 		
-		dS.oDraft("Cowser", 'C', 'A');
-		
+		dS.oDraft("Cowser", 'C', 'A');	
 		dS.oDraft("Bride", 'J', 'B');
 		dS.oDraft("Hamilton", 'D', 'B');
-		dS.oDraft("Hummel", 'C', 'B');
-		
+		dS.oDraft("Hummel", 'C', 'B');		
 		dS.oDraft("Blanco", 'D', 'C');
-		dS.oDraft("Capel", 'C', 'C');
-		
+		dS.oDraft("Capel", 'C', 'C');	
 		dS.oDraft("Capel", 'C', 'D');
 		dS.oDraft("Dalbec", 'B', 'D');
 		
 		dS.stars('A');
+		dS.stars('B');
+		
 		dS.team('A');
 		dS.team('B');
 		dS.team('C');
@@ -106,4 +95,16 @@ class DraftMethodTesting {
 		
 	}
 	
+	@Test
+	void testEvalMethods() {
+		DraftSystem dS = new DraftSystem();
+		
+		dS.overall("");
+		dS.evalFun("bA * r");
+		dS.overall("");
+		
+		dS.pOverall();
+		dS.pEvalFun("iP * sO");
+		dS.pOverall();
+	}
 }
