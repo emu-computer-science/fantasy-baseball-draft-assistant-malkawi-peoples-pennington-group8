@@ -1,8 +1,13 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PlayerTeam {
+public class PlayerTeam implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2562908526190664687L;
 	private char teamName;
 	// private ArrayList<BaseBallPlayer> players;
 	private ArrayList<Pitcher> pitchers;

@@ -7,9 +7,11 @@ import javax.script.ScriptException;
 
 import java.io.*;
 
+	
 
 
-public class DraftSystem {
+public class DraftSystem implements Serializable{
+	private static final long serialVersionUID = -2569918526190664687L;
 	private ArrayList<BaseBallPlayer> baseBallPlayers;
 	private ArrayList<Pitcher> pitchers;
 

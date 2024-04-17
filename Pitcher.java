@@ -1,5 +1,11 @@
+import java.io.Serializable;
+
 import org.apache.commons.jexl3.*;
-public class Pitcher {
+public class Pitcher implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2569908526190662687L;
 	private String firstName;
 	private String lastName;
 	private boolean isDrafted;

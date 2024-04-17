@@ -1,6 +1,12 @@
+import java.io.Serializable;
+
 import org.apache.commons.jexl3.*;
 
-public class BaseBallPlayer {
+public class BaseBallPlayer implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2569908526390664687L;
 	private String firstName;
 	private String lastName;
 	private boolean isDrafted;
