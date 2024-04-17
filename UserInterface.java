@@ -158,6 +158,6 @@ public class UserInterface {
 		System.exit(0);
 	}
 	private void showCommands() {
-		System.out.println("Available Commands: exit, help, overall, poverall, stars, team, iDraft, oDraft, evalfun, pevalfun");
+		System.out.println("Available Commands: exit, help, overall, poverall, stars, team, iDraft, oDraft, evalfun, pevalfun, save, restore");
 	}
 }
